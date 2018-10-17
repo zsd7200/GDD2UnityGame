@@ -7,7 +7,6 @@ public class LevelSelectScript : MonoBehaviour
 {
     public void Back()
     {
-        Debug.Log("Back!");
         SceneManager.LoadScene("Menu");
     }
 }
