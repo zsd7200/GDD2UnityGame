@@ -15,7 +15,8 @@ public class GameScript : MonoBehaviour {
 	public GameObject[,] allOrbs;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 		//sets size
 		size = width * height;
 
@@ -24,21 +25,28 @@ public class GameScript : MonoBehaviour {
 
 		field = new GameObject[size];
 
+        int ii = startX;
+        int jj = startY;
+
 		//Fills table with random orbs
 		for(int i = 0; i < width; i++){  //		for(int i = 0 + startX; i < width + startX; i++){
 			for(int j = 0; j < height; j++){ //			for(int j = 0 + startY; j < height + startY; j++){
-				Vector2 tempPos = new Vector2 (i, j);
+				Vector2 tempPos = new Vector2 (ii, jj);
 				GameObject orb = Instantiate(Resources.Load("Prefabs/Orb"), tempPos, Quaternion.identity) as GameObject;
 	            orb.GetComponent<Orb>().type = (OrbType)Random.Range(0, 5); //Will need to change this later because pure random isn't going to get a lot of possible moves
 	            //orb.transform.position = new Vector3((-(width - 1) / 2f + i % width) * padding, i / width * padding); //Grid is centered horizontally at the position and builds upward
 				orb.name = "( " + i + ", " + j + " )";
 				allOrbs[i,j] = orb;
+                ii++;
 			}
+            ii = startX;
+            jj++;
 		}
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 }

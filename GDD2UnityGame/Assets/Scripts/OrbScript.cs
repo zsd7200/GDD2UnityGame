@@ -17,6 +17,7 @@ public class OrbScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        
 		board = FindObjectOfType<GameScript> ();
 		targetX = (int)transform.position.x;
 		targetY = (int)transform.position.y;
@@ -47,8 +48,8 @@ public class OrbScript : MonoBehaviour {
 	void MovePieces(){
 		//right swipe
 		if (swipeAngle > -45 && swipeAngle <= 45) {
-			for (int i = 0; i < width; i++) {
-				for (int j = 0; j < height; j++) {
+			for (int i = 0; i < board.width; i++) {
+				for (int j = 0; j < board.height; j++) {
 					if (j == row) {
 						//if its the last emelment
 						if(board.allOrbs[i +1,j] == null){
