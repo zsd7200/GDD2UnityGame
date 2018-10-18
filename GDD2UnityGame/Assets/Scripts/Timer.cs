@@ -14,15 +14,22 @@ public class Timer : MonoBehaviour {
     float timeLeft;//Remaining time left (Seconds)
     float startTime;//Amount of time that the level started with(Seconds)
     int formattedTime;//Time remaining without decimals
+    public GameObject timerDisplay; //GameObject to display time remaining
+    float timerSize;//Original X size of the timerObj
 
 
 	// Use this for initialization
 	void Start () {
+        //Create a bar for the timer
+        timerDisplay = GameObject.FindGameObjectWithTag("TIMER");
         //Starting Time
         startTime = 60.0f;
         //Current Time remaining
         timeLeft = startTime;
-	}
+        //Find the size of the timer object
+        timerSize = timerDisplay.GetComponent<Transform>().localScale.x;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -42,6 +49,14 @@ public class Timer : MonoBehaviour {
         timeLeft = timeLeft - Time.deltaTime; //Subtract the amount of time since the lase frame
         formattedTime = (int)Mathf.Round(timeLeft); //Round the time to the nearest whole number
         
+        if (formattedTime % 2 == 0)
+        {
+            float newTimerSize = timerSize * (formattedTime / startTime); //Set the new size relative to the starting time and how much time is left
+            
+            timerDisplay.transform.localScale = new Vector3(newTimerSize, timerDisplay.transform.localScale.y, -1); //Set the new size
+
+            Debug.Log(newTimerSize);
+        }
     }
 
     /// <summary>
