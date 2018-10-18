@@ -10,19 +10,19 @@ public class Orb : MonoBehaviour {
         switch (type) //Loads model and color (still need models)
         {
             case OrbType.Red:
-                gameObject.GetComponent<Renderer>().material = new Material("/Resources/Material/YellowMat");
+                gameObject.GetComponent<Renderer>().material.color = Color.red;
                 break;
             case OrbType.Yellow:
-                gameObject.GetComponent<Renderer>().material.shader = Shader.Find("/Resources/Material/YellowMat");
+                gameObject.GetComponent<Renderer>().material.color = Color.yellow;
                 break;
             case OrbType.Green:
-                gameObject.GetComponent<Renderer>().material.shader = Shader.Find("/Resources/Material/GreenMat");
+                gameObject.GetComponent<Renderer>().material.color = Color.green;
                 break;
             case OrbType.Blue:
-                gameObject.GetComponent<Renderer>().material.shader = Shader.Find("/Resources/Material/BlueMat");
+                gameObject.GetComponent<Renderer>().material.color = Color.blue;
                 break;
             case OrbType.Black:
-                gameObject.GetComponent<Renderer>().material.shader = Shader.Find("/Resources/Material/BlackMat");
+                gameObject.GetComponent<Renderer>().material.color = Color.black;
                 break;
         }
 	}
