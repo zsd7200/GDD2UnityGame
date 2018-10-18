@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class OrbScript : MonoBehaviour {
 
-	private Vector2 firstTouchPos;
-	private Vector2 finalTouchPos;
+	private Vector3 firstTouchPos;
+	private Vector3 finalTouchPos;
 	public float swipeAngle = 0;
 
 	public int row;
