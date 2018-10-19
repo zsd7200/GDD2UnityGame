@@ -891,8 +891,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e09b7d96ea4b342a7ba53f395afa30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTime: 60
   timerDisplay: {fileID: 2041294113}
+  startTime: 60
   timerColor: {r: 0.8117647, g: 0.5686275, b: 0, a: 0}
 --- !u!114 &1321110833
 MonoBehaviour:

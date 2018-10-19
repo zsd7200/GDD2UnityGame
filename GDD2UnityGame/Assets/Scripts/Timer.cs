@@ -11,13 +11,12 @@ public class Timer : MonoBehaviour {
     * Use timeLeft to do any time calculations
     */
 
-    float timeLeft;//Remaining time left (Seconds)
-    public float startTime = 10.0f;//Amount of time that the level started with(Seconds)
-    int formattedTime;//Time remaining without decimals
     public GameObject timerDisplay; //GameObject to display time remaining
+    float timeLeft;//Remaining time left (Seconds)
+    public float startTime = 60.0f;//Amount of time that the level started with(Seconds)
+    int formattedTime;//Time remaining without decimals
     float timerSize;//Original X size of the timerObj
-    public Color timerColor = new Color(207, 145, 0); // default gold color for timer, can be changed in inspector
-
+    public Color timerColor = new Color32(207, 145, 0, 0); // default gold color for timer, can be changed in inspector
 
 	// Use this for initialization
 	void Start () {
