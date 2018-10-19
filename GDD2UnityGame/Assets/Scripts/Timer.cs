@@ -12,32 +12,34 @@ public class Timer : MonoBehaviour {
     */
 
     float timeLeft;//Remaining time left (Seconds)
-    float startTime;//Amount of time that the level started with(Seconds)
+    public float startTime = 10.0f;//Amount of time that the level started with(Seconds)
     int formattedTime;//Time remaining without decimals
     public GameObject timerDisplay; //GameObject to display time remaining
     float timerSize;//Original X size of the timerObj
+    public Color timerColor = new Color(207, 145, 0); // default gold color for timer, can be changed in inspector
 
 
 	// Use this for initialization
 	void Start () {
-        //Create a bar for the timer
-        timerDisplay = GameObject.FindGameObjectWithTag("TIMER");
-        //Starting Time
-        startTime = 60.0f;
+        // set bar color for the timer
+        timerDisplay.GetComponent<Renderer>().material.color = timerColor;
         //Current Time remaining
         timeLeft = startTime;
         //Find the size of the timer object
         timerSize = timerDisplay.GetComponent<Transform>().localScale.x;
 
     }
-	
-	// Update is called once per frame
-	void Update () {
-        DisplayTime();//Display the current time
-        Tick(); //Subtract time left 
 
-        OutOfTime(); //PLACEHOLDER, USE THIS FUNCTION TO DISPLAY THAT THE PLAYER IS OUT OF TIME
-	}
+    // Update is called once per frame
+    void Update()
+    {
+        if (timeLeft != 0) //If there is still time left, Update
+        {
+            DisplayTime();//Display the current time
+            Tick(); //Subtract time left 
+        }
+        //if no time is left do nothing
+    }
 
     /// <summary>
     /// Decreases the time remaining using time between frames.
@@ -48,40 +50,16 @@ public class Timer : MonoBehaviour {
         //Decrease time
         timeLeft = timeLeft - Time.deltaTime; //Subtract the amount of time since the lase frame
         formattedTime = (int)Mathf.Round(timeLeft); //Round the time to the nearest whole number
+        if (timeLeft <= 0)
+        {
+            //If there is no time left set time to 0
+            timeLeft = 0.0f;
+            formattedTime = 0;
+        }
+        float newTimerSize = timerSize * (timeLeft / startTime); //Set the new size relative to the starting time and how much time is left 
+        timerDisplay.transform.localScale = new Vector3(newTimerSize, timerDisplay.transform.localScale.y, -1); //Set the new size
         
-        if (formattedTime % 2 == 0)
-        {
-            float newTimerSize = timerSize * (formattedTime / startTime); //Set the new size relative to the starting time and how much time is left
-            
-            timerDisplay.transform.localScale = new Vector3(newTimerSize, timerDisplay.transform.localScale.y, -1); //Set the new size
-
-            Debug.Log(newTimerSize);
-        }
     }
-
-    /// <summary>
-    /// Adds time to the timer
-    /// </summary>
-    void AddTime()
-    {
-        //Increase time (based off of certain events in the game)
-        timeLeft += 5.0f;//Increase by 5 seconds
-    }
-
-    /// <summary>
-    /// Checks to see if there is still time remaining
-    /// </summary>
-    /// <returns></returns>
-    bool OutOfTime()
-    {
-        if (timeLeft <= 0.0f)//Checks to see if the timeLeft is less than 0
-        {
-            return true; //if there is no time remaining, return true
-        }
-        return false; //If there is still time remaining, return false
-    }
-
-
 
     /// <summary>
     /// Displays the formatted timer
