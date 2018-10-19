@@ -32,6 +32,7 @@ public class OrbScript : MonoBehaviour {
 	private void OnMouseDown()
     {
 		firstTouchPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+        //scale object so its buigger
 
 	}
 

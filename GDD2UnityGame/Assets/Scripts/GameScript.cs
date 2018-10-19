@@ -61,5 +61,51 @@ public class GameScript : MonoBehaviour {
             }
         }
         //left swipe
+        if (swipeAngle > 135 || swipeAngle <= -135)
+        {
+            GameObject storedOrb = allOrbs[row, 0];
+            for (int i = 0; i < width; i++)
+            {
+                GameObject orb = allOrbs[row, i];
+                int nextPos = (i - 1 + width) % width;
+                //Debug.Log("if: i = " + i + "   j: " + j);
+                orb.transform.position = new Vector3(nextPos, row);
+                orb.name = "( " + row + ", " + nextPos + " )";
+                if (i == width - 1) allOrbs[row, i] = storedOrb;
+                else allOrbs[row, i] = allOrbs[row, (i + 1) % width];
+            }
+        }
+
+        //up swipe
+        if (swipeAngle > 45 && swipeAngle <= 134)
+        {
+            GameObject storedOrb = allOrbs[height - 1, column];
+            for (int i = 0; i < height; i++)
+            {
+                GameObject orb = allOrbs[i, column];
+                int nextPos = (i + 1) % height;
+                //Debug.Log("if: i = " + i + "   j: " + j);
+                orb.transform.position = new Vector3(column, nextPos);
+                orb.name = "( " + nextPos + ", " + column + " )";
+                allOrbs[i, column] = storedOrb;
+                storedOrb = orb;
+            }
+        }
+
+        //down swipe
+        if (swipeAngle > -135 && swipeAngle <= -45)
+        {
+            GameObject storedOrb = allOrbs[0, column];
+            for (int i = 0; i < height; i++)
+            {
+                GameObject orb = allOrbs[i, column];
+                int nextPos = (i - 1 + height) % height;
+                //Debug.Log("if: i = " + i + "   j: " + j);
+                orb.transform.position = new Vector3(column, nextPos);
+                orb.name = "( " + nextPos + ", " + column + " )";
+                if (i == height - 1) allOrbs[i, column] = storedOrb;
+                else allOrbs[i, column] = allOrbs[(i + 1) % height, column];
+            }
+        }
     }
 }
