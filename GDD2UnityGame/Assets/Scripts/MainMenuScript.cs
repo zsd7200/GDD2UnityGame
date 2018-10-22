@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -26,13 +27,7 @@ public class MainMenuScript : MonoBehaviour
 
     /* Settings Menu Code */
     public AudioMixer aMixer;
-    Resolution[] resolutions;
-
-    void Awake()
-    {
-        // grab resolutions on awake so it can be used in both OnOptions() and SetResolution()
-        resolutions = Screen.resolutions;
-    }
+    List<string> resOptions;
 
     // run when options is enabled to initialize menu values
     public void OnOptions()
@@ -48,27 +43,22 @@ public class MainMenuScript : MonoBehaviour
         aMixer.GetFloat("volume", out vol);
 
         // fill in resolution dropdown
-        List<string> resOptions = new List<string>();
+        Resolution[] resolutions = Screen.resolutions;
+        resOptions = new List<string>();
         string screenRes = Screen.width + " x " + Screen.height;
 
         // create strings for dropdown
         for (int i = 0; i < resolutions.Length; i++)
         {
-            // delete duplicates created in build mode
-            if (i % 2 == 0)
-            {
-                string option = resolutions[i].width + " x " + resolutions[i].height;
-                resOptions.Add(option);
-            }
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            resOptions.Add(option);
         }
 
-        /*
         // delete duplicates created in build mode
         for (int i = 0; i < resOptions.Count; i++)
             for (int j = 0; j < resOptions.Count; j++)
                 if (resOptions[i] == resOptions[j] && i != j)
-                    resOptions.Remove(resOptions[i]);
-        */    
+                    resOptions.Remove(resOptions[i]);  
 
         // clear list
         resolutionDropdownObject.ClearOptions();
@@ -77,8 +67,8 @@ public class MainMenuScript : MonoBehaviour
         resolutionDropdownObject.AddOptions(resOptions);
 
         // adjust menu items accordingly
-        for (int i = 0; i < resolutionDropdownObject.options.Count; i++)
-            if (screenRes == resolutionDropdownObject.options[i].text)
+        for (int i = 0; i < resOptions.Count; i++)
+            if (screenRes == resOptions[i])
                 resolutionDropdownObject.value = i;
 
         fullscreenToggleObject.isOn = Screen.fullScreen;
@@ -88,7 +78,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void SetVolume(float vol)
     {
-        Debug.Log(vol);
+        // "volume" is an "exposed parameter" in the audio mixer that allows for the volume to be changed
         aMixer.SetFloat("volume", vol);
 
         if (vol == -40) // turn off the music if volume slider is at bottom
@@ -100,7 +90,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void SetQuality(int qual)
     {
-        QualitySettings.SetQualityLevel(qual);
+        QualitySettings.SetQualityLevel(qual, true);
     }
 
     public void SetFullscreen(bool isFullscreen)
@@ -110,10 +100,14 @@ public class MainMenuScript : MonoBehaviour
 
     public void SetResolution(int resIndex)
     {
-        Resolution res = resolutions[resIndex * 2];
-        // has to be resIndex*2 or else it will not work correctly, since the dropdown items get doubled in build mode for some reason
-        // this causes index out of range error in editor, but building and running it works flawlessly
+        int width;
+        int height;
 
-        Screen.SetResolution(res.width, res.height, Screen.fullScreen);
+        string[] option = resOptions[resIndex].Split(' ');
+
+        int.TryParse(option[0], out width);
+        int.TryParse(option[2], out height);
+
+        Screen.SetResolution(width, height, Screen.fullScreen);
     }
 }
