@@ -11,18 +11,23 @@ public class Orb : MonoBehaviour {
         {
             case OrbType.Red:
                 gameObject.GetComponent<Renderer>().material.color = Color.red;
+                gameObject.tag = "Red";
                 break;
             case OrbType.Yellow:
                 gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+                gameObject.tag = "Yellow";
                 break;
             case OrbType.Green:
                 gameObject.GetComponent<Renderer>().material.color = Color.green;
+                gameObject.tag = "Green";
                 break;
             case OrbType.Blue:
                 gameObject.GetComponent<Renderer>().material.color = Color.blue;
+                gameObject.tag = "Blue";
                 break;
             case OrbType.Black:
                 gameObject.GetComponent<Renderer>().material.color = Color.black;
+                gameObject.tag = "Black";
                 break;
         }
 	}

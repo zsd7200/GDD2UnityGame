@@ -43,6 +43,7 @@ public class OrbScript : MonoBehaviour {
 		CalcAngle();
 
         // scale object back to original size
+        // this does not revert a gameObject if it is looped to the other side
         gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
     }
 
@@ -51,5 +52,36 @@ public class OrbScript : MonoBehaviour {
 		swipeAngle = Mathf.Atan2 (finalTouchPos.y - firstTouchPos.y, finalTouchPos.x - firstTouchPos.x) * 180 / Mathf.PI;
 		//Debug.Log (swipeAngle);
         board.MovePieces(row, column, swipeAngle);
-	}
+    }
+
+    public void CheckMatch(string swipeType)
+    {
+        GameObject up, down, left = board.allOrbs[0,0], right = board.allOrbs[0,0];
+
+        // these give index out of array errors
+        if (row > 0 && row < board.width - 1)
+        {
+            left = board.allOrbs[row - 1, column];
+            right = board.allOrbs[row + 1, column];
+        }
+
+        if (column > 0 && column < board.height - 1)
+        {
+            up = board.allOrbs[row, column + 1];
+            down = board.allOrbs[row, column - 1];
+        }
+
+
+        Debug.Log("This Tag: " + tag);
+        Debug.Log("This Name: " + name);
+        Debug.Log("Left Tag: " + left.tag);
+        Debug.Log("Left Name: " + left.name);
+        Debug.Log("Right Tag: " + right.tag);
+        Debug.Log("Right Name: " + right.name);
+
+        if (gameObject.tag == left.tag && gameObject.tag == right.tag)
+        {
+            Debug.Log("sideways match");
+        }
+    }
 }

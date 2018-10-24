@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - TIMER
+  - Black
+  - Blue
+  - Green
+  - Red
+  - Yellow
   layers:
   - Default
   - TransparentFX
