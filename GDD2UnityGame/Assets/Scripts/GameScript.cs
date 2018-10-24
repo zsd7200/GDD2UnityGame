@@ -62,8 +62,8 @@ public class GameScript : MonoBehaviour {
                 storedOrb = orb;
             }
 
-            for (int i = 0; i < height; i++)
-                allOrbs[i, column].GetComponent<OrbScript>().CheckMatch("right");
+            for (int i = 0; i < width; i++)
+                allOrbs[row, i].GetComponent<OrbScript>().CheckMatch();
         }
         //left swipe
         else if (swipeAngle > 135 || swipeAngle <= -135)
@@ -80,8 +80,8 @@ public class GameScript : MonoBehaviour {
                 else allOrbs[row, i] = allOrbs[row, (i + 1) % width];
             }
 
-            for (int i = 0; i < height; i++)
-                allOrbs[i, column].GetComponent<OrbScript>().CheckMatch("left");
+            for (int i = 0; i < width; i++)
+                allOrbs[row, i].GetComponent<OrbScript>().CheckMatch();
         }
 
         //up swipe
@@ -100,7 +100,7 @@ public class GameScript : MonoBehaviour {
             }
 
             for (int i = 0; i < height; i++)
-                allOrbs[i, column].GetComponent<OrbScript>().CheckMatch("up");
+                allOrbs[i, column].GetComponent<OrbScript>().CheckMatch();
         }
 
         //down swipe
@@ -119,7 +119,7 @@ public class GameScript : MonoBehaviour {
             }
 
             for (int i = 0; i < height; i++)
-                    allOrbs[i, column].GetComponent<OrbScript>().CheckMatch("down");
+                    allOrbs[i, column].GetComponent<OrbScript>().CheckMatch();
         }
 
         

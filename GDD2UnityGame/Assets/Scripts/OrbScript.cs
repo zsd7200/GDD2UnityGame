@@ -54,23 +54,28 @@ public class OrbScript : MonoBehaviour {
         board.MovePieces(row, column, swipeAngle);
     }
 
-    public void CheckMatch(string swipeType)
+    public void CheckMatch()
     {
         GameObject up, down, left = board.allOrbs[0,0], right = board.allOrbs[0,0];
 
         // these give index out of array errors
         if (row > 0 && row < board.width - 1)
         {
-            left = board.allOrbs[row - 1, column];
-            right = board.allOrbs[row + 1, column];
+            if ((row - 1) >= 0)
+                left = board.allOrbs[row - 1, column];
+
+            if ((row + 1) < board.width)
+                right = board.allOrbs[row + 1, column];
         }
 
         if (column > 0 && column < board.height - 1)
         {
-            up = board.allOrbs[row, column + 1];
-            down = board.allOrbs[row, column - 1];
-        }
+            if ((column + 1) < board.width)
+                up = board.allOrbs[row, column + 1];
 
+            if ((column - 1) >= 0)
+                down = board.allOrbs[row, column - 1];
+        }
 
         Debug.Log("This Tag: " + tag);
         Debug.Log("This Name: " + name);
