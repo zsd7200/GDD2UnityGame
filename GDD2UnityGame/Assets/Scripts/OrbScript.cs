@@ -17,16 +17,23 @@ public class OrbScript : MonoBehaviour {
 	void Start ()
     {
         
-		board = FindObjectOfType<GameScript>();
-		row = (int)transform.position.y;
-		column = (int)transform.position.x;
+		board = FindObjectOfType<GameScript>(); //Find the current board
+		row = (int)transform.position.y; //Find the starting row
+		column = (int)transform.position.x; //Find the starting column
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
+        //Update Row and Column
         if(row != (int)transform.position.y) row = (int)transform.position.y;
         if(column != (int)transform.position.x) column = (int)transform.position.x;
+    }
+    void UpdatePosition()
+    {
+        //Update Row and Column
+        if (row != (int)transform.position.y) row = (int)transform.position.y;
+        if (column != (int)transform.position.x) column = (int)transform.position.x;
     }
 
 	private void OnMouseDown()
@@ -56,37 +63,78 @@ public class OrbScript : MonoBehaviour {
 
     public void CheckMatch()
     {
-        GameObject up, down, left = board.allOrbs[0,0], right = board.allOrbs[0,0];
+        //Find Up down left and right
+        GameObject up;
+        GameObject down;
+        GameObject left;
+        GameObject right;
 
-        // these give index out of array errors
-        if (row > 0 && row < board.width - 1)
+        this.UpdatePosition(); //Update the current position of the selected orb
+
+        //If the orb to the above is not out of range
+        if (!(this.row + 1 > board.height - 1))
         {
-            if ((row - 1) >= 0)
-                left = board.allOrbs[row - 1, column];
-
-            if ((row + 1) < board.width)
-                right = board.allOrbs[row + 1, column];
+            up = board.allOrbs[row + 1, column];
+        }
+        else //CHANGE THESE BASED OFF OF WHAT WE DECIDE AS A TEAM, currently I am checking immediate neighbors, even if it wrapped
+        {
+            up = board.allOrbs[0, column];
         }
 
-        if (column > 0 && column < board.height - 1)
+        //If the orb to the above is not out of range
+        if (!(this.row - 1 < 0))
         {
-            if ((column + 1) < board.width)
-                up = board.allOrbs[row, column + 1];
-
-            if ((column - 1) >= 0)
-                down = board.allOrbs[row, column - 1];
+            down = board.allOrbs[row - 1, column];
+        }
+        else//CHANGE THESE BASED OFF OF WHAT WE DECIDE AS A TEAM, currently I am checking immediate neighbors, even if it wrapped
+        {
+            down = board.allOrbs[board.height-1, column];
         }
 
-        Debug.Log("This Tag: " + tag);
-        Debug.Log("This Name: " + name);
-        Debug.Log("Left Tag: " + left.tag);
-        Debug.Log("Left Name: " + left.name);
-        Debug.Log("Right Tag: " + right.tag);
-        Debug.Log("Right Name: " + right.name);
-
-        if (gameObject.tag == left.tag && gameObject.tag == right.tag)
+        //Right
+        if (!(this.column + 1 > board.width - 1))
         {
-            Debug.Log("sideways match");
+            right = board.allOrbs[row, column + 1];
         }
+        else//CHANGE THESE BASED OFF OF WHAT WE DECIDE AS A TEAM, currently I am checking immediate neighbors, even if it wrapped
+        {
+            right = board.allOrbs[row, 0];
+        }
+
+        //left
+        if (!(this.column - 1 < 0))
+        {
+            left = board.allOrbs[row, column - 1];
+        }
+        else//CHANGE THESE BASED OFF OF WHAT WE DECIDE AS A TEAM, currently I am checking immediate neighbors, even if it wrapped
+        {
+            left = board.allOrbs[row, board.width-1];
+        }
+
+
+        //Check Vert
+        if (this.tag == up.tag && this.tag == down.tag)
+        {
+            Debug.Log("VERTICAL MATCH");
+            Debug.Log("CURRENT ORB" + row + "," + column);
+            Debug.Log("UP ORB" + (row + 1) + "," + column);
+            Debug.Log("DOWN ORB" + (row - 1) + "," + column);
+        }
+
+        //Check Horizontal
+        if (this.tag == left.tag && this.tag == right.tag)
+        {
+            Debug.Log("HORIZONTAL MATCH");
+            Debug.Log("CURRENT ORB" + row + "," + column);
+            Debug.Log("RIGHT ORB" + row + "," + (column + 1));
+            Debug.Log("LEFT ORB" + row + "," + (column - 1));
+        }
+
+        //If there is a match of 3, check to see if following orbs in that direction also match
+        //Delete checking wrapped orbs
+        //Delete Debug.Logs
+
+
+
     }
 }
