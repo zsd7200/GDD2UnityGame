@@ -17,7 +17,7 @@ public class OrbScript : MonoBehaviour {
 	void Start ()
     {
         
-		board = FindObjectOfType<GameScript> ();
+		board = FindObjectOfType<GameScript>();
 		row = (int)transform.position.y;
 		column = (int)transform.position.x;
 	}
@@ -32,17 +32,21 @@ public class OrbScript : MonoBehaviour {
 	private void OnMouseDown()
     {
 		firstTouchPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-        //scale object so its buigger
 
-	}
+        // scale object so its bigger
+        gameObject.transform.localScale = new Vector3(1, 1, 1);
+    }
 
-	private void OnMouseUp()
+    private void OnMouseUp()
     {
 		finalTouchPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		CalcAngle ();
-	}
+		CalcAngle();
 
-	void CalcAngle()
+        // scale object back to original size
+        gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+    }
+
+    void CalcAngle()
     {
 		swipeAngle = Mathf.Atan2 (finalTouchPos.y - firstTouchPos.y, finalTouchPos.x - firstTouchPos.x) * 180 / Mathf.PI;
 		//Debug.Log (swipeAngle);
