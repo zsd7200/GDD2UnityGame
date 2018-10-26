@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum OrbType { Red, Yellow, Green, Blue, Black}
+
 public class Orb : MonoBehaviour {
+
     public OrbType type;
+    public GameObject[] symbols = new GameObject[6];
+
 	// Use this for initialization
 	void Start () {
         switch (type) //Loads model and color (still need models)

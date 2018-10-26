@@ -65,6 +65,6 @@ public class Timer : MonoBehaviour {
     /// </summary>
     public void DisplayTime()
     {
-        gameObject.GetComponent<TMP_Text>().text = "" + formattedTime; //Find the game object and display the time
+        //gameObject.GetComponent<TMP_Text>().text = "" + formattedTime; //Find the game object and display the time
     }
 }
