@@ -53,6 +53,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4690482177768878}
+  - component: {fileID: 33099849332706544}
   m_Layer: 0
   m_Name: L_Symbol
   m_TagString: Untagged
@@ -171,6 +172,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!33 &33099849332706544
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1621015684979982}
+  m_Mesh: {fileID: 4300002, guid: b74f9247747038245b72478d6afd5082, type: 3}
 --- !u!33 &33408135676910880
 MeshFilter:
   m_ObjectHideFlags: 1

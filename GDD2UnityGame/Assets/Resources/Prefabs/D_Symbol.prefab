@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4657434460123534}
+  - component: {fileID: 33858850177579972}
   m_Layer: 0
   m_Name: D_Symbol
   m_TagString: Untagged
@@ -184,4 +185,11 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1330241656672372}
+  m_Mesh: {fileID: 4300002, guid: 7495067e872e6394a84fc87ed4aba9c8, type: 3}
+--- !u!33 &33858850177579972
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1028196150240726}
   m_Mesh: {fileID: 4300002, guid: 7495067e872e6394a84fc87ed4aba9c8, type: 3}

@@ -53,6 +53,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4430326853320546}
+  - component: {fileID: 33213934435297146}
   m_Layer: 0
   m_Name: UVW_Symbol
   m_TagString: Untagged
@@ -177,6 +178,13 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1561779289224724}
+  m_Mesh: {fileID: 4300000, guid: 8d66fcbbec730f14182ae6ad13d2af29, type: 3}
+--- !u!33 &33213934435297146
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1821587599402668}
   m_Mesh: {fileID: 4300000, guid: 8d66fcbbec730f14182ae6ad13d2af29, type: 3}
 --- !u!33 &33956134366555254
 MeshFilter:
