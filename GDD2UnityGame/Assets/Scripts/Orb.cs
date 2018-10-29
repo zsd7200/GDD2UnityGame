@@ -7,7 +7,7 @@ public enum OrbType { Red, Yellow, Green, Blue, Black, Purple, White, Orange, Pi
 public class Orb : MonoBehaviour {
 
     public OrbType type;
-    public GameObject[] symbols = new GameObject[6];
+    public GameObject[] symbols = new GameObject[9];
 
 	// Use this for initialization
 	void Start ()
@@ -15,7 +15,7 @@ public class Orb : MonoBehaviour {
         // declare colors not included in unity
         Color orange = new Color32(243, 110, 33, 1); // this is mycourses orange
         Color purple = new Color32(92, 0, 206, 1); // random purple color
-        Color pink = new Color32(255, 145, 234, 1); // random pink color, possibly use Color.magenta instead?
+        Color pink = new Color32(255, 94, 238, 1); // random pink color, possibly use Color.magenta instead?
 
         switch (type) //Loads model and color (still need models)
         {
@@ -56,19 +56,19 @@ public class Orb : MonoBehaviour {
                 gameObject.tag = "Purple";
                 break;
             case OrbType.White:
-                //gameObject.GetComponent<MeshFilter>().mesh = symbols[6].GetComponent<MeshFilter>().sharedMesh;
+                gameObject.GetComponent<MeshFilter>().mesh = symbols[6].GetComponent<MeshFilter>().sharedMesh;
                 gameObject.transform.rotation = Quaternion.Euler(-270, -90, 90);
                 gameObject.GetComponent<Renderer>().material.color = Color.white;
                 gameObject.tag = "White";
                 break;
             case OrbType.Orange:
-                //gameObject.GetComponent<MeshFilter>().mesh = symbols[7].GetComponent<MeshFilter>().sharedMesh;
+                gameObject.GetComponent<MeshFilter>().mesh = symbols[7].GetComponent<MeshFilter>().sharedMesh;
                 gameObject.transform.rotation = Quaternion.Euler(-270, -90, 90);
                 gameObject.GetComponent<Renderer>().material.color = orange;
                 gameObject.tag = "Orange";
                 break;
             case OrbType.Pink:
-                //gameObject.GetComponent<MeshFilter>().mesh = symbols[8].GetComponent<MeshFilter>().sharedMesh;
+                gameObject.GetComponent<MeshFilter>().mesh = symbols[8].GetComponent<MeshFilter>().sharedMesh;
                 gameObject.transform.rotation = Quaternion.Euler(-270, -90, 90);
                 gameObject.GetComponent<Renderer>().material.color = pink;
                 gameObject.tag = "Pink";
