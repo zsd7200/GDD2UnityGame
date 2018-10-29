@@ -13,10 +13,12 @@ public class OrbScript : MonoBehaviour {
 	private GameScript board;
 	private GameObject otherdot;
 
+    private ScoreCounter scoreCounter;
+
 	// Use this for initialization
 	void Start ()
     {
-        
+        scoreCounter = FindObjectOfType<ScoreCounter>();
 		board = FindObjectOfType<GameScript>(); //Find the current board
 		row = (int)transform.position.y; //Find the starting row
 		column = (int)transform.position.x; //Find the starting column
@@ -138,26 +140,32 @@ public class OrbScript : MonoBehaviour {
         if (tag == up.tag && tag == up2.tag && tag == down.tag && tag == down2.tag)
         {
             Debug.Log("Vertical 5 Match");
+            scoreCounter.score += 500;
         }
         else if (tag == up.tag && tag == down.tag && tag == up2.tag)
         {
             Debug.Log("Vertical 4 Match -- Up 2");
+            scoreCounter.score += 400;
         }
         else if (tag == up.tag && tag == down.tag && tag == down2.tag)
         {
             Debug.Log("Vertical 4 Match -- Down 2");
+            scoreCounter.score += 400;
         }
         else if (tag == down.tag && tag == down2.tag)
         {
             Debug.Log("Vertical Match -- Down 2");
+            scoreCounter.score += 200;
         }
         else if (tag == up.tag && tag == up2.tag)
         {
             Debug.Log("Vertical Match -- Up 2");
+            scoreCounter.score += 200;
         }
         else if (tag == up.tag && tag == down.tag)
         {
             Debug.Log("VERTICAL MATCH");
+            scoreCounter.score += 200;
             //Debug.Log("CURRENT ORB" + row + "," + column);
             //Debug.Log("UP ORB" + (row + 1) + "," + column);
             //Debug.Log("DOWN ORB" + (row - 1) + "," + column);
@@ -169,26 +177,32 @@ public class OrbScript : MonoBehaviour {
         if (tag == left.tag && tag == left2.tag && tag == right.tag && tag == right2.tag)
         {
             Debug.Log("Horizontal 5 Match");
+            scoreCounter.score += 500;
         }
         else if (tag == left.tag && tag == right.tag && tag == left2.tag)
         {
             Debug.Log("Horizontal 4 Match -- left 2");
+            scoreCounter.score += 400;
         }
         else if (tag == left.tag && tag == right.tag && tag == right2.tag)
         {
             Debug.Log("Horizontal 4 Match -- right 2");
+            scoreCounter.score += 400;
         }
         else if (tag == right.tag && tag == right2.tag)
         {
             Debug.Log("Horizontal Match -- right 2");
+            scoreCounter.score += 200;
         }
         else if (tag == left.tag && tag == left2.tag)
         {
             Debug.Log("Horizontal Match -- left 2");
+            scoreCounter.score += 200;
         }
         else if (tag == left.tag && tag == right.tag)
         {
             Debug.Log("HORIZONTAL MATCH");
+            scoreCounter.score += 200;
             //Debug.Log("CURRENT ORB" + row + "," + column);
             //Debug.Log("RIGHT ORB" + row + "," + (column + 1));
             //Debug.Log("LEFT ORB" + row + "," + (column - 1));
