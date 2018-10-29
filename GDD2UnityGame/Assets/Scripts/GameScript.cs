@@ -24,7 +24,7 @@ public class GameScript : MonoBehaviour {
         for (int i = 0; i < height; i++){
 			for(int j = 0; j < width; j++){
 				GameObject orb = Instantiate(Resources.Load("Prefabs/Orb"), new Vector3(j,i), Quaternion.identity) as GameObject; //j - (width/2), i - (height/2)
-                orb.GetComponent<Orb>().type = (OrbType)Random.Range(0, 6); //Will need to change this later because pure random isn't going to get a lot of possible moves
+                orb.GetComponent<Orb>().type = (OrbType)Random.Range(0, 9); //Will need to change this later because pure random isn't going to get a lot of possible moves
                 //orb.transform.position = new Vector3((-(width - 1) / 2f + i % width) * padding, i / width * padding); //Grid is centered horizontally at the position and builds upward
                 orb.name = "( " + i + ", " + j + " )";
                 allOrbs[i,j] = orb;
