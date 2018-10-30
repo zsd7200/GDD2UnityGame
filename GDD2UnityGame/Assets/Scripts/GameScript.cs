@@ -55,6 +55,11 @@ public class GameScript : MonoBehaviour {
                 GameObject orb = allOrbs[row, i];
                 int nextPos = (i + 1) % width;
                 //Debug.Log("if: i = " + i + "   j: " + j);
+
+                // animation poc
+                for (float j = 0.0f; j < 1; j += 0.01f)
+                    StartCoroutine(MoveRight(orb, 0.001f));
+
                 orb.transform.position = new Vector3(nextPos, row); // subtract height/2 to keep the line from moving all around the screen
 
                 orb.name = "( " + row + ", " + nextPos + " )";
@@ -74,6 +79,11 @@ public class GameScript : MonoBehaviour {
                 GameObject orb = allOrbs[row, i];
                 int nextPos = (i - 1 + width) % width;
                 //Debug.Log("if: i = " + i + "   j: " + j);
+
+                // animation poc
+                for (float j = 0.0f; j < 1; j += 0.01f)
+                    StartCoroutine(MoveLeft(orb, 0.001f));
+
                 orb.transform.position = new Vector3(nextPos, row);
                 orb.name = "( " + row + ", " + nextPos + " )";
                 if (i == width - 1) allOrbs[row, i] = storedOrb;
@@ -93,6 +103,13 @@ public class GameScript : MonoBehaviour {
                 GameObject orb = allOrbs[i, column];
                 int nextPos = (i + 1) % height;
                 //Debug.Log("if: i = " + i + "   j: " + j);
+
+                // animation poc
+                // something goes wrong here
+                // orb goes up slightly higher than it should
+                for (float j = 0.0f; j < 1; j += 0.01f)
+                    StartCoroutine(MoveUp(orb, 0.001f));
+
                 orb.transform.position = new Vector3(column, nextPos);
                 orb.name = "( " + nextPos + ", " + column + " )";
                 allOrbs[i, column] = storedOrb;
@@ -112,6 +129,13 @@ public class GameScript : MonoBehaviour {
                 GameObject orb = allOrbs[i, column];
                 int nextPos = (i - 1 + height) % height;
                 //Debug.Log("if: i = " + i + "   j: " + j);
+
+                // animation poc
+                // something goes wrong here
+                // after swiping down, the orbs don't set themselves up correctly for some reason
+                for (float j = 0.0f; j < 1; j += 0.01f)
+                    StartCoroutine(MoveDown(orb, 0.001f));
+
                 orb.transform.position = new Vector3(column, nextPos);
                 orb.name = "( " + nextPos + ", " + column + " )";
                 if (i == height - 1) allOrbs[i, column] = storedOrb;
@@ -125,5 +149,35 @@ public class GameScript : MonoBehaviour {
         
     }
 
+    #region Movement Animations
+    // poc movement
+    private IEnumerator MoveRight(GameObject orb, float delay)
+    {
+        yield return new WaitForSeconds(delay); // waits for the delay
+        float newX = orb.transform.position.x + 0.001f; // increments position
+        orb.transform.position = new Vector3(newX, orb.transform.position.y, orb.transform.position.z); // sets new position
+    }
 
+    private IEnumerator MoveLeft(GameObject orb, float delay)
+    {
+        yield return new WaitForSeconds(delay); // waits for the delay
+        float newX = orb.transform.position.x - 0.001f; // increments position
+        orb.transform.position = new Vector3(newX, orb.transform.position.y, orb.transform.position.z); // sets new position
+    }
+
+    private IEnumerator MoveUp(GameObject orb, float delay)
+    {
+        yield return new WaitForSeconds(delay); // waits for the delay
+        float newY = orb.transform.position.y + 0.001f; // increments position
+        orb.transform.position = new Vector3(orb.transform.position.x, newY, orb.transform.position.z); // sets new position
+    }
+
+    private IEnumerator MoveDown(GameObject orb, float delay)
+    {
+        yield return new WaitForSeconds(delay); // waits for the delay
+        float newY = orb.transform.position.y - 0.001f; // increments position
+        orb.transform.position = new Vector3(orb.transform.position.x, newY, orb.transform.position.z); // sets new position
+    }
+
+    #endregion
 }
