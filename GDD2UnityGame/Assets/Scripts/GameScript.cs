@@ -58,7 +58,7 @@ public class GameScript : MonoBehaviour {
 
                 // animation poc
                 for (int j = 0; j < 100; j++)
-                    StartCoroutine(MoveRight(orb, 0.001f));
+                    StartCoroutine(MoveAnim(orb, 0.001f, new Vector3(nextPos, row)));
 
                 orb.transform.position = new Vector3((nextPos - 0.099993f), row); // subtract height/2 to keep the line from moving all around the screen
 
@@ -82,7 +82,7 @@ public class GameScript : MonoBehaviour {
 
                 // animation poc
                 for (int j = 0; j < 100; j++)
-                    StartCoroutine(MoveLeft(orb, 0.001f));
+                    StartCoroutine(MoveAnim(orb, 0.001f, new Vector3(nextPos, row)));
 
                 orb.transform.position = new Vector3((nextPos + 0.099993f), row);
                 orb.name = "( " + row + ", " + nextPos + " )";
@@ -108,7 +108,7 @@ public class GameScript : MonoBehaviour {
                 // something goes wrong here
                 // orb goes up slightly higher than it should
                 for (int j = 0; j < 100; j++)
-                    StartCoroutine(MoveUp(orb, 0.001f));
+                    StartCoroutine(MoveAnim(orb, 0.001f, new Vector3(column, nextPos)));
 
                 orb.transform.position = new Vector3(column, (nextPos - 0.099993f));
                 orb.name = "( " + nextPos + ", " + column + " )";
@@ -134,7 +134,7 @@ public class GameScript : MonoBehaviour {
                 // something goes wrong here
                 // after swiping down, the orbs don't set themselves up correctly for some reason
                 for (int j = 0; j < 100; j++)
-                    StartCoroutine(MoveDown(orb, 0.001f));
+                    StartCoroutine(MoveAnim(orb, 0.001f, new Vector3(column, nextPos)));
 
                 orb.transform.position = new Vector3(column, (nextPos + 0.099993f));
                 orb.name = "( " + nextPos + ", " + column + " )";
@@ -149,35 +149,10 @@ public class GameScript : MonoBehaviour {
         
     }
 
-    #region Movement Animations
     // poc movement
-    private IEnumerator MoveRight(GameObject orb, float delay)
+    private IEnumerator MoveAnim(GameObject orb, float delay, Vector3 newPos)
     {
         yield return new WaitForSeconds(delay); // waits for the delay
-        float newX = orb.transform.position.x + 0.001f; // increments position
-        orb.transform.position = new Vector3(newX, orb.transform.position.y, orb.transform.position.z); // sets new position
+        orb.transform.position = Vector3.Lerp(orb.transform.position, newPos, 1); //new Vector3(newX, orb.transform.position.y, orb.transform.position.z); // sets new position
     }
-
-    private IEnumerator MoveLeft(GameObject orb, float delay)
-    {
-        yield return new WaitForSeconds(delay); // waits for the delay
-        float newX = orb.transform.position.x - 0.001f; // increments position
-        orb.transform.position = new Vector3(newX, orb.transform.position.y, orb.transform.position.z); // sets new position
-    }
-
-    private IEnumerator MoveUp(GameObject orb, float delay)
-    {
-        yield return new WaitForSeconds(delay); // waits for the delay
-        float newY = orb.transform.position.y + 0.001f; // increments position
-        orb.transform.position = new Vector3(orb.transform.position.x, newY, orb.transform.position.z); // sets new position
-    }
-
-    private IEnumerator MoveDown(GameObject orb, float delay)
-    {
-        yield return new WaitForSeconds(delay); // waits for the delay
-        float newY = orb.transform.position.y - 0.001f; // increments position
-        orb.transform.position = new Vector3(orb.transform.position.x, newY, orb.transform.position.z); // sets new position
-    }
-
-    #endregion
 }
