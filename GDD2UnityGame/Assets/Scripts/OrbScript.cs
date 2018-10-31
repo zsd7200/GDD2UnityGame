@@ -136,83 +136,145 @@ public class OrbScript : MonoBehaviour {
 
 
 
+        // list to hold every orb matched in one movement
+        List<GameObject> matchedOrbs = new List<GameObject>();
+
+
         // Check Vert
         if (tag == up.tag && tag == up2.tag && tag == down.tag && tag == down2.tag)
         {
             Debug.Log("Vertical 5 Match");
             scoreCounter.score += 500;
+
+            // add all orbs in if statement to matchedOrbs list
+            matchedOrbs.Add(up);
+            matchedOrbs.Add(up2);
+            matchedOrbs.Add(down);
+            matchedOrbs.Add(down2);
+            matchedOrbs.Add(gameObject);
         }
         else if (tag == up.tag && tag == down.tag && tag == up2.tag)
         {
             Debug.Log("Vertical 4 Match -- Up 2");
             scoreCounter.score += 400;
+
+            matchedOrbs.Add(up);
+            matchedOrbs.Add(up2);
+            matchedOrbs.Add(down);
+            matchedOrbs.Add(gameObject);
         }
         else if (tag == up.tag && tag == down.tag && tag == down2.tag)
         {
             Debug.Log("Vertical 4 Match -- Down 2");
             scoreCounter.score += 400;
+
+            matchedOrbs.Add(up);
+            matchedOrbs.Add(down);
+            matchedOrbs.Add(down2);
+            matchedOrbs.Add(gameObject);
         }
         else if (tag == down.tag && tag == down2.tag)
         {
             Debug.Log("Vertical Match -- Down 2");
             scoreCounter.score += 200;
+
+            matchedOrbs.Add(down);
+            matchedOrbs.Add(down2);
+            matchedOrbs.Add(gameObject);
         }
         else if (tag == up.tag && tag == up2.tag)
         {
             Debug.Log("Vertical Match -- Up 2");
             scoreCounter.score += 200;
+
+            matchedOrbs.Add(up);
+            matchedOrbs.Add(up2);
+            matchedOrbs.Add(gameObject);
         }
         else if (tag == up.tag && tag == down.tag)
         {
             Debug.Log("VERTICAL MATCH");
             scoreCounter.score += 200;
-            //Debug.Log("CURRENT ORB" + row + "," + column);
-            //Debug.Log("UP ORB" + (row + 1) + "," + column);
-            //Debug.Log("DOWN ORB" + (row - 1) + "," + column);
+
+            matchedOrbs.Add(up);
+            matchedOrbs.Add(down);
+            matchedOrbs.Add(gameObject);
         }
-
-
 
         // Check Horizontal
         if (tag == left.tag && tag == left2.tag && tag == right.tag && tag == right2.tag)
         {
             Debug.Log("Horizontal 5 Match");
             scoreCounter.score += 500;
+
+            matchedOrbs.Add(left);
+            matchedOrbs.Add(left2);
+            matchedOrbs.Add(right);
+            matchedOrbs.Add(right2);
+            matchedOrbs.Add(gameObject);
         }
         else if (tag == left.tag && tag == right.tag && tag == left2.tag)
         {
             Debug.Log("Horizontal 4 Match -- left 2");
             scoreCounter.score += 400;
+
+            matchedOrbs.Add(left);
+            matchedOrbs.Add(left2);
+            matchedOrbs.Add(right);
+            matchedOrbs.Add(gameObject);
         }
         else if (tag == left.tag && tag == right.tag && tag == right2.tag)
         {
             Debug.Log("Horizontal 4 Match -- right 2");
             scoreCounter.score += 400;
+
+            matchedOrbs.Add(left);
+            matchedOrbs.Add(right);
+            matchedOrbs.Add(right2);
+            matchedOrbs.Add(gameObject);
         }
         else if (tag == right.tag && tag == right2.tag)
         {
             Debug.Log("Horizontal Match -- right 2");
             scoreCounter.score += 200;
+
+            matchedOrbs.Add(right);
+            matchedOrbs.Add(right2);
+            matchedOrbs.Add(gameObject);
         }
         else if (tag == left.tag && tag == left2.tag)
         {
             Debug.Log("Horizontal Match -- left 2");
             scoreCounter.score += 200;
+
+            matchedOrbs.Add(left);
+            matchedOrbs.Add(left2);
+            matchedOrbs.Add(gameObject);
         }
         else if (tag == left.tag && tag == right.tag)
         {
             Debug.Log("HORIZONTAL MATCH");
             scoreCounter.score += 200;
-            //Debug.Log("CURRENT ORB" + row + "," + column);
-            //Debug.Log("RIGHT ORB" + row + "," + (column + 1));
-            //Debug.Log("LEFT ORB" + row + "," + (column - 1));
+
+            matchedOrbs.Add(left);
+            matchedOrbs.Add(right);
+            matchedOrbs.Add(gameObject);
         }
 
         //If there is a match of 3, check to see if following orbs in that direction also match
         //Delete checking wrapped orbs
-        //Delete Debug.Logs
 
+        Respawn(matchedOrbs);
 
+    }
 
+    // method to handle orb deletion and respawn
+    void Respawn(List<GameObject> matches)
+    {
+        foreach(GameObject orb in matches)
+        {
+            // change color of every matched orb
+            orb.GetComponent<Renderer>().material.color = new Color32(79, 255, 255, 1);
+        }
     }
 }
