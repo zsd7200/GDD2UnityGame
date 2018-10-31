@@ -57,10 +57,10 @@ public class GameScript : MonoBehaviour {
                 //Debug.Log("if: i = " + i + "   j: " + j);
 
                 // animation poc
-                for (float j = 0.0f; j < 1; j += 0.01f)
+                for (int j = 0; j < 100; j++)
                     StartCoroutine(MoveRight(orb, 0.001f));
 
-                orb.transform.position = new Vector3(nextPos, row); // subtract height/2 to keep the line from moving all around the screen
+                orb.transform.position = new Vector3((nextPos - 0.099993f), row); // subtract height/2 to keep the line from moving all around the screen
 
                 orb.name = "( " + row + ", " + nextPos + " )";
                 allOrbs[row, i] = storedOrb;
@@ -81,10 +81,10 @@ public class GameScript : MonoBehaviour {
                 //Debug.Log("if: i = " + i + "   j: " + j);
 
                 // animation poc
-                for (float j = 0.0f; j < 1; j += 0.01f)
+                for (int j = 0; j < 100; j++)
                     StartCoroutine(MoveLeft(orb, 0.001f));
 
-                orb.transform.position = new Vector3(nextPos, row);
+                orb.transform.position = new Vector3((nextPos + 0.099993f), row);
                 orb.name = "( " + row + ", " + nextPos + " )";
                 if (i == width - 1) allOrbs[row, i] = storedOrb;
                 else allOrbs[row, i] = allOrbs[row, (i + 1) % width];
@@ -107,10 +107,10 @@ public class GameScript : MonoBehaviour {
                 // animation poc
                 // something goes wrong here
                 // orb goes up slightly higher than it should
-                for (float j = 0.0f; j < 1; j += 0.01f)
+                for (int j = 0; j < 100; j++)
                     StartCoroutine(MoveUp(orb, 0.001f));
 
-                orb.transform.position = new Vector3(column, nextPos);
+                orb.transform.position = new Vector3(column, (nextPos - 0.099993f));
                 orb.name = "( " + nextPos + ", " + column + " )";
                 allOrbs[i, column] = storedOrb;
                 storedOrb = orb;
@@ -133,10 +133,10 @@ public class GameScript : MonoBehaviour {
                 // animation poc
                 // something goes wrong here
                 // after swiping down, the orbs don't set themselves up correctly for some reason
-                for (float j = 0.0f; j < 1; j += 0.01f)
+                for (int j = 0; j < 100; j++)
                     StartCoroutine(MoveDown(orb, 0.001f));
 
-                orb.transform.position = new Vector3(column, nextPos);
+                orb.transform.position = new Vector3(column, (nextPos + 0.099993f));
                 orb.name = "( " + nextPos + ", " + column + " )";
                 if (i == height - 1) allOrbs[i, column] = storedOrb;
                 else allOrbs[i, column] = allOrbs[(i + 1) % height, column];
