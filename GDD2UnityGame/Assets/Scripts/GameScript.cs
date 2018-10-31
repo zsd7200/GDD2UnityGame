@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameScript : MonoBehaviour {
+public class GameScript : MonoBehaviour
+{
+    private ScoreCounter scoreCounter;
 
-	//public so we can access them in the editor.  easier to change for testing
+    //public so we can access them in the editor.  easier to change for testing
     public int width;
 	public int height;
     public float padding = 1f; //Distance between orbs on board
@@ -14,8 +16,9 @@ public class GameScript : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-		//sets size
-		size = width * height;
+        scoreCounter = FindObjectOfType<ScoreCounter>();
+        //sets size
+        size = width * height;
 
 		//makes 2d array for orbs
 		allOrbs = new GameObject[height, width];
@@ -69,7 +72,7 @@ public class GameScript : MonoBehaviour {
             }
 
             for (int i = 0; i < width; i++)
-                allOrbs[row, i].GetComponent<OrbScript>().CheckMatch();
+                CheckMatch(row, i);
         }
         //left swipe
         else if (swipeAngle > 135 || swipeAngle <= -135)
@@ -94,7 +97,7 @@ public class GameScript : MonoBehaviour {
             }
 
             for (int i = 0; i < width; i++)
-                allOrbs[row, i].GetComponent<OrbScript>().CheckMatch();
+                CheckMatch(row, i);
         }
 
         //up swipe
@@ -122,7 +125,7 @@ public class GameScript : MonoBehaviour {
             }
 
             for (int i = 0; i < height; i++)
-                allOrbs[i, column].GetComponent<OrbScript>().CheckMatch();
+                CheckMatch(i, column);
         }
 
         //down swipe
@@ -150,10 +153,150 @@ public class GameScript : MonoBehaviour {
             }
 
             for (int i = 0; i < height; i++)
-                    allOrbs[i, column].GetComponent<OrbScript>().CheckMatch();
+                CheckMatch(i, column);
+        }
+    }
+
+    public void CheckMatch(int row, int column)
+    {
+        GameObject orb = allOrbs[row, column];
+        //Find Up down left and right
+        GameObject up, down, left, right, up2, down2, left2, right2;
+
+        orb.GetComponent<OrbScript>().UpdatePosition(); //Update the current position of the selected orb
+
+        //If the orb to the above is not out of range
+        if (!(row + 1 > height - 1))
+        {
+            up = allOrbs[row + 1, column];
+        }
+        else up = null;
+
+        if (!(row + 2 > height - 1))
+        {
+            up2 = allOrbs[row + 2, column];
+        }
+        else up2 = null;
+
+        //If the orb to the above is not out of range
+        if (!(row - 1 < 0))
+        {
+            down = allOrbs[row - 1, column];
+        }
+        else down = null;
+
+        if (!(row - 2 < 0))
+        {
+            down2 = allOrbs[row - 2, column];
+        }
+        else down2 = null;
+
+        //Right
+        if (!(column + 1 > width - 1))
+        {
+            right = allOrbs[row, column + 1];
+        }
+        else right = null;
+
+        if (!(column + 2 > width - 1))
+        {
+            right2 = allOrbs[row, column + 2];
+        }
+        else right2 = null;
+
+        //left
+        if (!(column - 1 < 0))
+        {
+            left = allOrbs[row, column - 1];
+        }
+        else left = null;
+
+        if (!(column - 2 < 0))
+        {
+            left2 = allOrbs[row, column - 2];
+        }
+        else left2 = null;
+
+        // list to hold every orb matched in one movement
+        List<GameObject> matchedOrbs = new List<GameObject>();
+        matchedOrbs.Add(orb);
+
+        //Check Vert
+        if (up && up.tag == orb.tag)
+        {
+            matchedOrbs.Add(up.gameObject);
+            if (up2 && up2.tag == orb.tag)
+            {
+                matchedOrbs.Add(up2.gameObject);
+                Debug.Log("Up 2 match");
+            }
+        }
+        if (down && down.tag == orb.tag)
+        {
+            matchedOrbs.Add(down.gameObject);
+            if (down2 && down2.tag == orb.tag)
+            {
+                matchedOrbs.Add(down2.gameObject);
+                Debug.Log("Down 2 match");
+            }
+        }
+        if (matchedOrbs.Count >= 3)
+        {
+            Debug.Log("Vertical " + matchedOrbs.Count + " Match");
+            scoreCounter.score += 100 * matchedOrbs.Count;
+            Respawn(matchedOrbs);
         }
 
-        
+        //Clears list for next check
+        matchedOrbs.Clear();
+        matchedOrbs.Add(orb);
+
+        //Check Horz
+        if (left && left.tag == orb.tag)
+        {
+            matchedOrbs.Add(left.gameObject);
+            if (left2 && left2.tag == orb.tag)
+            {
+                matchedOrbs.Add(left2.gameObject);
+                Debug.Log("Left 2 match");
+            }
+        }
+        if (right && right.tag == orb.tag)
+        {
+            matchedOrbs.Add(right.gameObject);
+            if (right2 && right2.tag == orb.tag)
+            {
+                matchedOrbs.Add(right2.gameObject);
+                Debug.Log("Right 2 match");
+            }
+        }
+        if (matchedOrbs.Count >= 3)
+        {
+            Debug.Log("Horizontal " + matchedOrbs.Count + " Match");
+            scoreCounter.score += 100 * matchedOrbs.Count;
+            Respawn(matchedOrbs);
+        }
+    }
+
+    GameObject MakeOrb(int row, int column)
+    {
+        GameObject orb = Instantiate(Resources.Load("Prefabs/Orb"), new Vector3(column, row), Quaternion.identity) as GameObject; //j - (width/2), i - (height/2)
+        orb.GetComponent<Orb>().type = (OrbType)Random.Range(0, 9);
+        orb.name = "( " + row + ", " + column + " )";
+        return orb;
+    }
+
+    // method to handle orb deletion and respawn
+    void Respawn(List<GameObject> matches)
+    {
+        foreach (GameObject match in matches)
+        {
+            OrbScript orb = match.GetComponent<OrbScript>();
+            // change color of every matched orb
+            //match.GetComponent<Renderer>().material.color = new Color32(79, 255, 255, 1);
+            Destroy(match);
+            allOrbs[orb.row, orb.column] = MakeOrb(orb.row, orb.column);
+        }
     }
 
     // poc movement

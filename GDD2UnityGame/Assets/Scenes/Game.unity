@@ -655,6 +655,10 @@ Prefab:
       propertyPath: startTime
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 4538144024055186, guid: c16f8d54d80f2c64d9da2b650d96c52e, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.4535327
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c16f8d54d80f2c64d9da2b650d96c52e, type: 2}
   m_IsPrefabAsset: 0
