@@ -17,6 +17,7 @@ public class Timer : MonoBehaviour {
     int formattedTime;//Time remaining without decimals
     float timerSize;//Original X size of the timerObj
     public Color timerColor = new Color32(207, 145, 0, 0); // default gold color for timer, can be changed in inspector
+    public GameObject GameOverText; //Used to tell that the game is over
 
 	// Use this for initialization
 	void Start () {
@@ -36,8 +37,10 @@ public class Timer : MonoBehaviour {
         {
             DisplayTime();//Display the current time
             Tick(); //Subtract time left 
+           
         }
-        //if no time is left do nothing
+        //if no time is left game over
+        GameOver();
     }
 
     /// <summary>
@@ -58,6 +61,16 @@ public class Timer : MonoBehaviour {
         float newTimerSize = timerSize * (timeLeft / startTime); //Set the new size relative to the starting time and how much time is left 
         timerDisplay.transform.localScale = new Vector3(newTimerSize, timerDisplay.transform.localScale.y, -1); //Set the new size
         
+    }
+
+    void GameOver()
+    {
+        if (timeLeft <= 0)
+        {
+            //Display Game Over
+            GameOverText.SetActive(true);
+        }
+        //Else do nothing
     }
 
     /// <summary>

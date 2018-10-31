@@ -11,6 +11,7 @@ ModelImporter:
     400004: C_Symbol:C_Symbol_group
     2100000: C_SymbolMat
     2100002: C_Symbol_initialShadingGroup
+    2100004: C_Symbol_C_Symbol_groupMat
     2300000: C_Symbol
     2300002: C_Symbol:C_Symbol_group
     3300000: C_Symbol
