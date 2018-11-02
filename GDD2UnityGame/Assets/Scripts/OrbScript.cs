@@ -13,7 +13,7 @@ public class OrbScript : MonoBehaviour {
 	public int column;
 	private GameScript board;
 	private GameObject otherdot;
-    private float timer = 60.0f;
+    public bool frozen = false;
 
 	// Use this for initialization
 	void Start ()
@@ -30,10 +30,8 @@ public class OrbScript : MonoBehaviour {
         //Update Row and Column
         if (row != (int)transform.position.y) row = (int)transform.position.y;
         if (column != (int)transform.position.x) column = (int)transform.position.x;
-
-        if (timer != 0)
-            timer = GameObject.FindGameObjectWithTag("TIMER").GetComponent<Timer>().timeLeft;
     }
+
     public void UpdatePosition()
     {
         //Update Row and Column
@@ -43,7 +41,7 @@ public class OrbScript : MonoBehaviour {
 
 	private void OnMouseDown()
     {
-        if (timer != 0)
+        if (frozen != true)
         {
             firstTouchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -54,7 +52,7 @@ public class OrbScript : MonoBehaviour {
 
     private void OnMouseUp()
     {
-        if (timer != 0)
+        if (frozen != true)
         {
 		    finalTouchPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 		    CalcAngle();

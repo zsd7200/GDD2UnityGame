@@ -118,6 +118,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1388614899582138, guid: c703d68b163d1ba4d9b5811899fe5e74,
     type: 2}
   m_PrefabInternal: {fileID: 514221232}
+--- !u!114 &96813714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 96813713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8824b686c43da409bdc6ca8c97824d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &514221232
 Prefab:
   m_ObjectHideFlags: 0
@@ -782,7 +793,7 @@ Prefab:
     - target: {fileID: 114899294620185660, guid: c16f8d54d80f2c64d9da2b650d96c52e,
         type: 2}
       propertyPath: startTime
-      value: 8
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4538144024055186, guid: c16f8d54d80f2c64d9da2b650d96c52e, type: 2}
       propertyPath: m_LocalScale.y
