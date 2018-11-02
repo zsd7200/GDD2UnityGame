@@ -12,10 +12,15 @@ public class GameScript : MonoBehaviour
     public float padding = 1f; //Distance between orbs on board
     int size;
 	public GameObject[,] allOrbs;
+    public AudioSource audioSource; //Used to handle audio
+    public AudioClip moveSound; //Used when an object is moved
+    public AudioClip matchSound; //Used when an object is matched
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
+        audioSource = new AudioSource();
+        audioSource.
         scoreCounter = FindObjectOfType<ScoreCounter>();
         //sets size
         size = width * height;
@@ -95,6 +100,8 @@ public class GameScript : MonoBehaviour
                 if (i == width - 1) allOrbs[row, i] = storedOrb;
                 else allOrbs[row, i] = allOrbs[row, (i + 1) % width];
             }
+
+           
 
             for (int i = 0; i < width; i++)
                 CheckMatch(row, i);
