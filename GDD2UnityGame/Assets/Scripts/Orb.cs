@@ -12,6 +12,11 @@ public class Orb : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        ChangeOrb();
+	}
+
+    public void ChangeOrb()
+    {
         // declare colors not included in unity
         Color orange = new Color32(243, 110, 33, 1); // this is mycourses orange
         Color purple = new Color32(92, 0, 206, 1); // random purple color
@@ -74,5 +79,5 @@ public class Orb : MonoBehaviour {
                 gameObject.tag = "Pink";
                 break;
         }
-	}
+    }
 }

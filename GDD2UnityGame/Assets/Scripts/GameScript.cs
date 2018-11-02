@@ -60,8 +60,7 @@ public class GameScript : MonoBehaviour
                 //Debug.Log("if: i = " + i + "   j: " + j);
 
                 // animation poc
-                //for (int j = 0; j < 100; j++)
-                //    StartCoroutine(MoveAnim(orb, 0.001f, new Vector3(nextPos, row)));
+                StartCoroutine(MoveAnim(orb, 0.09f, new Vector3(nextPos, row)));
 
                 //orb.transform.position = new Vector3((nextPos - 0.099993f), row); // subtract height/2 to keep the line from moving all around the screen
 
@@ -85,8 +84,7 @@ public class GameScript : MonoBehaviour
                 //Debug.Log("if: i = " + i + "   j: " + j);
 
                 // animation poc
-                //for (int j = 0; j < 100; j++)
-                //    StartCoroutine(MoveAnim(orb, 0.001f, new Vector3(nextPos, row)));
+                StartCoroutine(MoveAnim(orb, 0.09f, new Vector3(nextPos, row)));
 
                 //orb.transform.position = new Vector3((nextPos + 0.099993f), row);
 
@@ -113,8 +111,7 @@ public class GameScript : MonoBehaviour
                 // animation poc
                 // something goes wrong here
                 // orb goes up slightly higher than it should
-                //for (int j = 0; j < 100; j++)
-                //    StartCoroutine(MoveAnim(orb, 0.001f, new Vector3(column, nextPos)));
+                StartCoroutine(MoveAnim(orb, 0.09f, new Vector3(column, nextPos)));
 
                 //orb.transform.position = new Vector3(column, (nextPos - 0.099993f));
 
@@ -141,8 +138,7 @@ public class GameScript : MonoBehaviour
                 // animation poc
                 // something goes wrong here
                 // after swiping down, the orbs don't set themselves up correctly for some reason
-                //for (int j = 0; j < 100; j++)
-                //    StartCoroutine(MoveAnim(orb, 0.001f, new Vector3(column, nextPos)));
+                StartCoroutine(MoveAnim(orb, 0.09f, new Vector3(column, nextPos)));
 
                 //orb.transform.position = new Vector3(column, (nextPos + 0.099993f));
 
@@ -231,15 +227,18 @@ public class GameScript : MonoBehaviour
                 Debug.Log("Up 2 match");
             }
         }
+
         if (down && down.tag == orb.tag)
         {
             matchedOrbs.Add(down.gameObject);
+
             if (down2 && down2.tag == orb.tag)
             {
                 matchedOrbs.Add(down2.gameObject);
                 Debug.Log("Down 2 match");
             }
         }
+
         if (matchedOrbs.Count >= 3)
         {
             Debug.Log("Vertical " + matchedOrbs.Count + " Match");
@@ -278,31 +277,60 @@ public class GameScript : MonoBehaviour
         }
     }
 
-    GameObject MakeOrb(int row, int column)
-    {
-        GameObject orb = Instantiate(Resources.Load("Prefabs/Orb"), new Vector3(column, row), Quaternion.identity) as GameObject; //j - (width/2), i - (height/2)
-        orb.GetComponent<Orb>().type = (OrbType)Random.Range(0, 9);
-        orb.name = "( " + row + ", " + column + " )";
-        return orb;
-    }
-
     // method to handle orb deletion and respawn
     void Respawn(List<GameObject> matches)
     {
         foreach (GameObject match in matches)
+            StartCoroutine(RespawnAnim(match, 1, new Vector3()));
+
+        foreach (GameObject match in matches)
+        {
+            match.GetComponent<Orb>().type = (OrbType)Random.Range(0, 9);
+            match.GetComponent<Orb>().ChangeOrb();
+        }
+
+        foreach (GameObject match in matches)
+            StartCoroutine(RespawnAnim(match, 1, new Vector3(0.5f, 0.5f, 0.5f)));
+
+
+        /*
+        foreach (GameObject match in matches)
         {
             OrbScript orb = match.GetComponent<OrbScript>();
-            // change color of every matched orb
-            //match.GetComponent<Renderer>().material.color = new Color32(79, 255, 255, 1);
             Destroy(match);
             allOrbs[orb.row, orb.column] = MakeOrb(orb.row, orb.column);
         }
+        */
     }
 
-    // poc movement
+    // movement animation
     private IEnumerator MoveAnim(GameObject orb, float delay, Vector3 newPos)
     {
-        yield return new WaitForSeconds(delay); // waits for the delay
-        orb.transform.position = Vector3.Lerp(orb.transform.position, newPos, 1); //new Vector3(newX, orb.transform.position.y, orb.transform.position.z); // sets new position
+        float currTime = 0;
+        Vector3 start = orb.transform.position;
+
+        while (currTime <= delay)
+        {
+            orb.transform.position = Vector3.Lerp(start, newPos, currTime / delay);
+            currTime += Time.deltaTime;
+
+            if (currTime > delay)
+                orb.transform.position = newPos;
+
+            yield return null;
+        }
+    }
+
+    // respawn animation
+    private IEnumerator RespawnAnim(GameObject orb, float delay, Vector3 scale)
+    {
+        float currTime = 0;
+
+        while (currTime <= delay)
+        {
+            orb.transform.localScale = Vector3.Lerp(orb.transform.localScale, scale, currTime / delay);
+            currTime += Time.deltaTime;
+            yield return null;
+        }
     }
 }
