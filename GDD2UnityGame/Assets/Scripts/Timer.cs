@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour {
     */
 
     public GameObject timerDisplay; //GameObject to display time remaining
-    float timeLeft;//Remaining time left (Seconds)
+    public float timeLeft;//Remaining time left (Seconds)
     public float startTime = 60.0f;//Amount of time that the level started with(Seconds)
     int formattedTime;//Time remaining without decimals
     float timerSize;//Original X size of the timerObj

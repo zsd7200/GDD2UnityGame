@@ -24,6 +24,9 @@ public class GameScript : MonoBehaviour
 		//makes 2d array for orbs
 		allOrbs = new GameObject[height, width];
 
+        // set scorecounter object
+        scoreCounter = FindObjectOfType<ScoreCounter>();
+
         //Fills table with random orbs
         for (int i = 0; i < height; i++){
 			for(int j = 0; j < width; j++){

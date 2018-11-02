@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class OrbScript : MonoBehaviour {
 
@@ -12,6 +13,7 @@ public class OrbScript : MonoBehaviour {
 	public int column;
 	private GameScript board;
 	private GameObject otherdot;
+    private float timer = 60.0f;
 
 	// Use this for initialization
 	void Start ()
@@ -19,14 +21,18 @@ public class OrbScript : MonoBehaviour {
 		board = FindObjectOfType<GameScript>(); //Find the current board
 		row = (int)transform.position.y; //Find the starting row
 		column = (int)transform.position.x; //Find the starting column
+        //GameObject.FindGameObjectWithTag("GameOver").SetActive(false);
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         //Update Row and Column
-        if(row != (int)transform.position.y) row = (int)transform.position.y;
-        if(column != (int)transform.position.x) column = (int)transform.position.x;
+        if (row != (int)transform.position.y) row = (int)transform.position.y;
+        if (column != (int)transform.position.x) column = (int)transform.position.x;
+
+        if (timer != 0)
+            timer = GameObject.FindGameObjectWithTag("TIMER").GetComponent<Timer>().timeLeft;
     }
     public void UpdatePosition()
     {
@@ -37,20 +43,27 @@ public class OrbScript : MonoBehaviour {
 
 	private void OnMouseDown()
     {
-		firstTouchPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+        if (timer != 0)
+        {
+            firstTouchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        // scale object so its bigger
-        gameObject.transform.localScale = new Vector3(1, 1, 1);
+            // scale object so its bigger
+            gameObject.transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 
     private void OnMouseUp()
     {
-		finalTouchPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		CalcAngle();
+        if (timer != 0)
+        {
+		    finalTouchPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		    CalcAngle();
 
-        // scale object back to original size
-        // this does not revert a gameObject if it is looped to the other side
-        gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            // scale object back to original size
+            // this does not revert a gameObject if it is looped to the other side
+            gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        }
+
     }
 
     void CalcAngle()
