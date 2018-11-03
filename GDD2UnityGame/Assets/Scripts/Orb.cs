@@ -51,7 +51,7 @@ public class Orb : MonoBehaviour {
             case OrbType.Black:
                 gameObject.GetComponent<MeshFilter>().mesh = symbols[4].GetComponent<MeshFilter>().sharedMesh;
                 gameObject.transform.rotation = Quaternion.Euler(-270, -90, 90);
-                gameObject.GetComponent<Renderer>().material.color = Color.black;
+                gameObject.GetComponent<Renderer>().material.color = new Color32(79, 255, 255, 1);
                 gameObject.tag = "Black";
                 break;
             case OrbType.Purple:
