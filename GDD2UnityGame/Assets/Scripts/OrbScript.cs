@@ -59,7 +59,7 @@ public class OrbScript : MonoBehaviour {
 
             // scale object back to original size
             // this does not revert a gameObject if it is looped to the other side
-            gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            gameObject.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
         }
 
     }

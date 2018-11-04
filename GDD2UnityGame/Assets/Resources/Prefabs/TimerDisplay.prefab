@@ -9,20 +9,20 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1783709693913230}
+  m_RootGameObject: {fileID: 1801149042057534}
   m_IsPrefabAsset: 1
---- !u!1 &1783709693913230
+--- !u!1 &1801149042057534
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4538144024055186}
-  - component: {fileID: 33963298213995714}
-  - component: {fileID: 23645531124473898}
-  - component: {fileID: 65466232099779256}
-  - component: {fileID: 114899294620185660}
+  - component: {fileID: 4694804010586780}
+  - component: {fileID: 33407362395756882}
+  - component: {fileID: 23780610551993032}
+  - component: {fileID: 65338945637858430}
+  - component: {fileID: 114568288311209132}
   m_Layer: 0
   m_Name: TimerDisplay
   m_TagString: TIMER
@@ -30,32 +30,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4538144024055186
+--- !u!4 &4694804010586780
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1783709693913230}
+  m_GameObject: {fileID: 1801149042057534}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.034, y: 12.76, z: -9.3}
-  m_LocalScale: {x: 21.202896, y: -0.4535327, z: 1}
+  m_LocalPosition: {x: 8.21, y: 12.76, z: -9.3}
+  m_LocalScale: {x: 21.202896, y: 0.4535327, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23645531124473898
+--- !u!23 &23780610551993032
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1783709693913230}
+  m_GameObject: {fileID: 1801149042057534}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 0}
@@ -78,36 +78,38 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33963298213995714
+--- !u!33 &33407362395756882
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1783709693913230}
+  m_GameObject: {fileID: 1801149042057534}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65466232099779256
+--- !u!65 &65338945637858430
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1783709693913230}
+  m_GameObject: {fileID: 1801149042057534}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114899294620185660
+--- !u!114 &114568288311209132
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1783709693913230}
+  m_GameObject: {fileID: 1801149042057534}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2e09b7d96ea4b342a7ba53f395afa30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerDisplay: {fileID: 1783709693913230}
+  timerDisplay: {fileID: 1801149042057534}
+  timeLeft: 0
   startTime: 60
-  timerColor: {r: 0.8117647, g: 0.5686275, b: 0, a: 0}
+  timerColor: {r: 1, g: 0.7608102, b: 0, a: 0}
+  GameOverText: {fileID: 0}

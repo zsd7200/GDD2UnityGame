@@ -293,20 +293,9 @@ public class GameScript : MonoBehaviour
         {
             match.GetComponent<Orb>().type = (OrbType)Random.Range(0, 9);
             match.GetComponent<Orb>().ChangeOrb();
+            StartCoroutine(RespawnAnim(match, 1, new Vector3(0.4f, 0.4f, 0.4f)));
         }
 
-        foreach (GameObject match in matches)
-            StartCoroutine(RespawnAnim(match, 1, new Vector3(0.5f, 0.5f, 0.5f)));
-
-
-        /*
-        foreach (GameObject match in matches)
-        {
-            OrbScript orb = match.GetComponent<OrbScript>();
-            Destroy(match);
-            allOrbs[orb.row, orb.column] = MakeOrb(orb.row, orb.column);
-        }
-        */
     }
 
     // movement animation
