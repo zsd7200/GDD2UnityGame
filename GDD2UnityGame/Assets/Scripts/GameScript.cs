@@ -168,7 +168,6 @@ public class GameScript : MonoBehaviour
 			WonGameText.SetActive(true);
 			backButton.SetActive(true);
 			win = true;
-			//stops timer
 		}
     }
 
