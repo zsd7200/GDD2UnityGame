@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -578,6 +578,7 @@ MonoBehaviour:
   WonGameText: {fileID: 464651232}
   backButton: {fileID: 909787773}
   win: 0
+  winScore: 10000
 --- !u!4 &1195811008
 Transform:
   m_ObjectHideFlags: 0
@@ -1040,11 +1041,11 @@ Prefab:
         type: 2}
       propertyPath: backButton
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 909787773}
     - target: {fileID: 114459183878917962, guid: c16f8d54d80f2c64d9da2b650d96c52e,
         type: 2}
       propertyPath: startTime
-      value: 5
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c16f8d54d80f2c64d9da2b650d96c52e, type: 2}
@@ -1314,7 +1315,8 @@ Prefab:
       propertyPath: m_text
       value: You Win!
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114273384702935948, guid: c703d68b163d1ba4d9b5811899fe5e74, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: c703d68b163d1ba4d9b5811899fe5e74, type: 2}
   m_IsPrefabAsset: 0
 --- !u!4 &2009285482 stripped

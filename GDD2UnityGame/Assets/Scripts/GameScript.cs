@@ -16,6 +16,7 @@ public class GameScript : MonoBehaviour
 	public GameObject WonGameText; //Used to tell that the game is over
 	public GameObject backButton;
 	public bool win;
+    public int winScore = 3000;
 
 
     // Use this for initialization
@@ -163,11 +164,17 @@ public class GameScript : MonoBehaviour
                 CheckMatch(i, column);
         }
 
-		if(scoreCounter.score >= 300){
+		if(scoreCounter.score >= winScore)
+        {
 			//brings up win text and back button
 			WonGameText.SetActive(true);
 			backButton.SetActive(true);
 			win = true;
+
+            // freeze orbs when you win
+            for (int i = 0; i < height; i++)
+                for (int j = 0; j < width; j++)
+                    allOrbs[i, j].GetComponent<OrbScript>().frozen = true;
 		}
     }
 
@@ -304,6 +311,9 @@ public class GameScript : MonoBehaviour
             StartCoroutine(RespawnAnim(match, 1, new Vector3(0.4f, 0.4f, 0.4f)));
         }
 
+        foreach (GameObject match in matches)
+            StartCoroutine(CheckAfterRespawn(match));
+
     }
 
     // movement animation
@@ -335,5 +345,11 @@ public class GameScript : MonoBehaviour
             currTime += Time.deltaTime;
             yield return null;
         }
+    }
+
+    private IEnumerator CheckAfterRespawn(GameObject orb)
+    {
+        yield return new WaitForSeconds(1f);
+        CheckMatch(orb.GetComponent<OrbScript>().row, orb.GetComponent<OrbScript>().column);
     }
 }
