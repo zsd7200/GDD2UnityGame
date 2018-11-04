@@ -15,11 +15,6 @@ public class MainMenuScript : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
-    public void LevelSelect()
-    {
-        SceneManager.LoadScene("LevelSelect");
-    }
-
     public void Exit()
     {
         Application.Quit();
