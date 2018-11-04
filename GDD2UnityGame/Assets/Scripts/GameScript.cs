@@ -167,57 +167,53 @@ public class GameScript : MonoBehaviour
 
         orb.GetComponent<OrbScript>().UpdatePosition(); //Update the current position of the selected orb
 
+        #region Setting up/down/left/right/etc. GameObjects
+
         //If the orb to the above is not out of range
         if (!(row + 1 > height - 1))
-        {
             up = allOrbs[row + 1, column];
-        }
-        else up = null;
+        else
+            up = null;
 
         if (!(row + 2 > height - 1))
-        {
             up2 = allOrbs[row + 2, column];
-        }
-        else up2 = null;
+        else
+            up2 = null;
 
         //If the orb to the above is not out of range
         if (!(row - 1 < 0))
-        {
             down = allOrbs[row - 1, column];
-        }
-        else down = null;
+        else
+            down = null;
 
         if (!(row - 2 < 0))
-        {
             down2 = allOrbs[row - 2, column];
-        }
-        else down2 = null;
+        else
+            down2 = null;
 
         //Right
         if (!(column + 1 > width - 1))
-        {
             right = allOrbs[row, column + 1];
-        }
-        else right = null;
+        else
+            right = null;
 
         if (!(column + 2 > width - 1))
-        {
             right2 = allOrbs[row, column + 2];
-        }
-        else right2 = null;
+        else
+            right2 = null;
 
         //left
         if (!(column - 1 < 0))
-        {
             left = allOrbs[row, column - 1];
-        }
-        else left = null;
+        else
+            left = null;
 
         if (!(column - 2 < 0))
-        {
             left2 = allOrbs[row, column - 2];
-        }
-        else left2 = null;
+        else
+            left2 = null;
+
+        #endregion
 
         // list to hold every orb matched in one movement
         List<GameObject> matchedOrbs = new List<GameObject>();
