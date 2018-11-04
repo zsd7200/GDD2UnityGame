@@ -17,6 +17,8 @@ public class GameScript : MonoBehaviour
 	public GameObject backButton;
 	public bool win;
     public int winScore = 3000;
+    public AudioSource Match;//Handles match sound
+    public AudioSource Move;//Handles move sound
 
 
     // Use this for initialization
@@ -80,6 +82,7 @@ public class GameScript : MonoBehaviour
                 storedOrb = orb;
             }
 
+            Move.Play();
             for (int i = 0; i < width; i++)
                 CheckMatch(row, i);
         }
@@ -104,8 +107,8 @@ public class GameScript : MonoBehaviour
                 else allOrbs[row, i] = allOrbs[row, (i + 1) % width];
             }
 
-           
 
+            Move.Play();
             for (int i = 0; i < width; i++)
                 CheckMatch(row, i);
         }
@@ -132,7 +135,7 @@ public class GameScript : MonoBehaviour
                 allOrbs[i, column] = storedOrb;
                 storedOrb = orb;
             }
-
+            Move.Play();
             for (int i = 0; i < height; i++)
                 CheckMatch(i, column);
         }
@@ -159,7 +162,7 @@ public class GameScript : MonoBehaviour
                 if (i == height - 1) allOrbs[i, column] = storedOrb;
                 else allOrbs[i, column] = allOrbs[(i + 1) % height, column];
             }
-
+            Move.Play();
             for (int i = 0; i < height; i++)
                 CheckMatch(i, column);
         }
@@ -246,6 +249,7 @@ public class GameScript : MonoBehaviour
             {
                 matchedOrbs.Add(up2.gameObject);
                 Debug.Log("Up 2 match");
+                Match.Play();
             }
         }
 
@@ -257,6 +261,7 @@ public class GameScript : MonoBehaviour
             {
                 matchedOrbs.Add(down2.gameObject);
                 Debug.Log("Down 2 match");
+                Match.Play();
             }
         }
 
@@ -265,6 +270,7 @@ public class GameScript : MonoBehaviour
             Debug.Log("Vertical " + matchedOrbs.Count + " Match");
             scoreCounter.score += 100 * matchedOrbs.Count;
             Respawn(matchedOrbs);
+            Match.Play();
         }
 
         //Clears list for next check
@@ -279,6 +285,7 @@ public class GameScript : MonoBehaviour
             {
                 matchedOrbs.Add(left2.gameObject);
                 Debug.Log("Left 2 match");
+                Match.Play();
             }
         }
         if (right && right.tag == orb.tag)
@@ -288,6 +295,7 @@ public class GameScript : MonoBehaviour
             {
                 matchedOrbs.Add(right2.gameObject);
                 Debug.Log("Right 2 match");
+                Match.Play();
             }
         }
         if (matchedOrbs.Count >= 3)
@@ -295,6 +303,7 @@ public class GameScript : MonoBehaviour
             Debug.Log("Horizontal " + matchedOrbs.Count + " Match");
             scoreCounter.score += 100 * matchedOrbs.Count;
             Respawn(matchedOrbs);
+            Match.Play();
         }
     }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -177,7 +177,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 70336229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.028878786, y: 4.7522244, z: -9.972656}
+  m_LocalPosition: {x: 0.028878786, y: 4.7522244, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1534036073}
@@ -579,6 +579,8 @@ MonoBehaviour:
   backButton: {fileID: 909787773}
   win: 0
   winScore: 10000
+  Match: {fileID: 1534036072}
+  Move: {fileID: 1719625551}
 --- !u!4 &1195811008
 Transform:
   m_ObjectHideFlags: 0
@@ -824,7 +826,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 0ab070a9def87344780d258d021c2b5f,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 33351968a56573141966d9e14b88a945, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
