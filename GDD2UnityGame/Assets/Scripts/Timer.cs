@@ -18,6 +18,7 @@ public class Timer : MonoBehaviour {
     float timerSize;//Original X size of the timerObj
     public Color timerColor = new Color32(207, 145, 0, 0); // default gold color for timer, can be changed in inspector
     public GameObject GameOverText; //Used to tell that the game is over
+    public GameObject backButton;
 
 	// Use this for initialization
 	void Start () {
@@ -69,6 +70,7 @@ public class Timer : MonoBehaviour {
         {
             //Display Game Over
             GameOverText.SetActive(true);
+            backButton.SetActive(true);
         }
         //Else do nothing
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum OrbType { Red, Yellow, Green, Blue, Black, Purple, White, Orange, Pink}
+public enum OrbType { Red, Yellow, Green, Blue, LightBlue, Purple, White, Orange, Pink}
 
 public class Orb : MonoBehaviour {
 
@@ -21,6 +21,7 @@ public class Orb : MonoBehaviour {
         Color orange = new Color32(243, 110, 33, 1); // this is mycourses orange
         Color purple = new Color32(92, 0, 206, 1); // random purple color
         Color pink = new Color32(255, 94, 238, 1); // random pink color, possibly use Color.magenta instead?
+        Color lightBlue = new Color32(79, 255, 255, 1);
 
         switch (type) //Loads model and color (still need models)
         {
@@ -48,11 +49,11 @@ public class Orb : MonoBehaviour {
                 gameObject.GetComponent<Renderer>().material.color = Color.blue;
                 gameObject.tag = "Blue";
                 break;
-            case OrbType.Black:
+            case OrbType.LightBlue:
                 gameObject.GetComponent<MeshFilter>().mesh = symbols[4].GetComponent<MeshFilter>().sharedMesh;
                 gameObject.transform.rotation = Quaternion.Euler(-270, -90, 90);
-                gameObject.GetComponent<Renderer>().material.color = new Color32(79, 255, 255, 1);
-                gameObject.tag = "Black";
+                gameObject.GetComponent<Renderer>().material.color = lightBlue;
+                gameObject.tag = "LightBlue";
                 break;
             case OrbType.Purple:
                 gameObject.GetComponent<MeshFilter>().mesh = symbols[5].GetComponent<MeshFilter>().sharedMesh;
