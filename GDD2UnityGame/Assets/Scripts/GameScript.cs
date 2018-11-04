@@ -12,12 +12,17 @@ public class GameScript : MonoBehaviour
     public float padding = 1f; //Distance between orbs on board
     int size;
 	public GameObject[,] allOrbs;
-   
+
+	public GameObject WonGameText; //Used to tell that the game is over
+	public GameObject backButton;
+	public bool win;
+
 
     // Use this for initialization
     void Start ()
     {
-        
+		win = false;
+
         //sets size
         size = width * height;
 
@@ -157,6 +162,14 @@ public class GameScript : MonoBehaviour
             for (int i = 0; i < height; i++)
                 CheckMatch(i, column);
         }
+
+		if(scoreCounter.score >= 300){
+			//brings up win text and back button
+			WonGameText.SetActive(true);
+			backButton.SetActive(true);
+			win = true;
+			//stops timer
+		}
     }
 
     public void CheckMatch(int row, int column)

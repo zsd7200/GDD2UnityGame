@@ -19,6 +19,7 @@ public class Timer : MonoBehaviour {
     public Color timerColor = new Color32(207, 145, 0, 0); // default gold color for timer, can be changed in inspector
     public GameObject GameOverText; //Used to tell that the game is over
     public GameObject backButton;
+	public bool win;
 
 	// Use this for initialization
 	void Start () {
@@ -29,12 +30,16 @@ public class Timer : MonoBehaviour {
         //Find the size of the timer object
         timerSize = timerDisplay.GetComponent<Transform>().localScale.x;
 
+		win = GameObject.FindObjectOfType<GameScript>().win;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timeLeft != 0) //If there is still time left, Update
+		win = GameObject.FindObjectOfType<GameScript>().win;
+
+        if (timeLeft != 0 && win == false) //If there is still time left, Update
         {
             DisplayTime();//Display the current time
             Tick(); //Subtract time left 
