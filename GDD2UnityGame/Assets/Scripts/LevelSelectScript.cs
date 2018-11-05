@@ -19,7 +19,7 @@ public class LevelSelectScript : MonoBehaviour
 
     private void OnMouseExit()
     {
-        GetComponent<Renderer>().material = Resources.Load<Material>("Materials\\TextBackdrop");
+        GetComponent<Renderer>().material = Resources.Load<Material>("Materials\\ButtonBackdrop");
     }
 
     private void OnMouseDown()

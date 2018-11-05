@@ -5,18 +5,20 @@ using TMPro;
 
 public class ScoreCounter : MonoBehaviour {
 
+    public int winScore;
     public int score = 0;
 
-	// Use this for initialization
-	void Start ()
+    private void Start()
     {
-        score = 0;
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        winScore = FindObjectOfType<GameScript>().winScore;
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
-        //Debug.Log(gameObject.GetComponent<TMP_Text>().text);
-        gameObject.GetComponent<TMP_Text>().text = "Score: " + score;
+        if (winScore - score >= 0)
+            gameObject.GetComponent<TMP_Text>().text = "Item Energy: " + (winScore - score);
+        else
+            gameObject.GetComponent<TMP_Text>().text = "Item Energy: 0";
     }
 }

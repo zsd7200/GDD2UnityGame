@@ -38,7 +38,7 @@ public class Timer : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-		win = GameObject.FindObjectOfType<GameScript>().win;
+		win = FindObjectOfType<GameScript>().win;
 
         if (timeLeft != 0 && win == false) //If there is still time left, Update
         {

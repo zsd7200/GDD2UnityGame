@@ -15,7 +15,7 @@ public class GameScript : MonoBehaviour
 
 	public GameObject WonGameText; //Used to tell that the game is over
 	public GameObject backButton;
-    public GameObject restartButton;
+    public GameObject nextButton;
 	public bool win;
     public int winScore = 3000;
     public AudioSource Match;//Handles match sound
@@ -183,7 +183,7 @@ public class GameScript : MonoBehaviour
 			//brings up win text and back button
 			WonGameText.SetActive(true);
 			backButton.SetActive(true);
-            restartButton.SetActive(true);
+            nextButton.SetActive(true);
 			win = true;
 
             // freeze orbs when you win

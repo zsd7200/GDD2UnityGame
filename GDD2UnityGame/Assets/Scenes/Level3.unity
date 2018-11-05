@@ -1512,7 +1512,7 @@ MonoBehaviour:
   padding: 1
   WonGameText: {fileID: 464651232}
   backButton: {fileID: 909787773}
-  restartButton: {fileID: 1331588133}
+  nextButton: {fileID: 1331588133}
   win: 0
   winScore: 16000
   Match: {fileID: 1534036072}
@@ -2496,7 +2496,7 @@ Prefab:
     - target: {fileID: 224573242179473284, guid: c703d68b163d1ba4d9b5811899fe5e74,
         type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.5
+      value: -4.81
       objectReference: {fileID: 0}
     - target: {fileID: 224573242179473284, guid: c703d68b163d1ba4d9b5811899fe5e74,
         type: 2}
