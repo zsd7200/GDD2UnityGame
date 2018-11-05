@@ -46,7 +46,23 @@ public class GameScript : MonoBehaviour
                 allOrbs[i,j] = orb;
 			}
 		}
-	}
+
+
+
+        //checks for matches at the begining
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                CheckMatch(i, j);
+            }
+        }
+        scoreCounter.score = 0;
+
+
+
+
+    }
 
     public void MovePieces(int row, int column, float swipeAngle)
     {
@@ -357,4 +373,8 @@ public class GameScript : MonoBehaviour
         yield return new WaitForSeconds(1f);
         CheckMatch(orb.GetComponent<OrbScript>().row, orb.GetComponent<OrbScript>().column);
     }
+
+
+
+
 }
