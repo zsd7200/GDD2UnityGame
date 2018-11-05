@@ -7,6 +7,11 @@ public class LevelSelectScript : MonoBehaviour
 {
     public int level;
 
+    private void Start()
+    {
+        GetComponent<MeshRenderer>().enabled = false;
+    }
+
     public void Back()
     {
         SceneManager.LoadScene("Menu");
@@ -14,17 +19,17 @@ public class LevelSelectScript : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        GetComponent<Renderer>().material = Resources.Load<Material>("Materials\\ButtonBackdrop_Hover");
+        GetComponent<MeshRenderer>().enabled = true;
     }
 
     private void OnMouseExit()
     {
-        GetComponent<Renderer>().material = Resources.Load<Material>("Materials\\ButtonBackdrop");
+        GetComponent<MeshRenderer>().enabled = false;
     }
 
     private void OnMouseDown()
     {
-        GetComponent<Renderer>().material = Resources.Load<Material>("Materials\\BoardBackdrop");
+        GetComponent<Renderer>().material = Resources.Load<Material>("Materials\\ButtonBackdrop_Hover");
     }
 
     private void OnMouseUp()

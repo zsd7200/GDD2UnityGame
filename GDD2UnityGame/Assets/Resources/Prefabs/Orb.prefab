@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33104868603226100}
   - component: {fileID: 23025984066993758}
   - component: {fileID: 114665817970537650}
-  - component: {fileID: 58747711872777132}
   - component: {fileID: 114627172090935168}
+  - component: {fileID: 65438888662880674}
   m_Layer: 0
   m_Name: Orb
   m_TagString: Untagged
@@ -86,21 +86,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1301417585091324}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!58 &58747711872777132
-CircleCollider2D:
+--- !u!65 &65438888662880674
+BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1301417585091324}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Size: {x: 2.3, y: 2.3, z: 2.3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114627172090935168
 MonoBehaviour:
   m_ObjectHideFlags: 1
