@@ -1514,7 +1514,7 @@ MonoBehaviour:
   backButton: {fileID: 909787773}
   nextButton: {fileID: 1331588133}
   win: 0
-  winScore: 16000
+  winScore: 20000
   Match: {fileID: 1534036072}
   Move: {fileID: 1719625551}
 --- !u!4 &1195811008
@@ -2200,7 +2200,7 @@ Prefab:
     - target: {fileID: 114459183878917962, guid: c16f8d54d80f2c64d9da2b650d96c52e,
         type: 2}
       propertyPath: startTime
-      value: 120
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 114459183878917962, guid: c16f8d54d80f2c64d9da2b650d96c52e,
         type: 2}
