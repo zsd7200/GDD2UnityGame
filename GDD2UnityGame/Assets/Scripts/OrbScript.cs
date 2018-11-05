@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class OrbScript : MonoBehaviour {
@@ -39,9 +40,9 @@ public class OrbScript : MonoBehaviour {
         if (column != (int)transform.position.x) column = (int)transform.position.x;
     }
 
-	private void OnMouseDown()
+	public void OnMouseDown()
     {
-        if (frozen != true)
+        if (frozen == false)
         {
             firstTouchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -50,9 +51,9 @@ public class OrbScript : MonoBehaviour {
         }
     }
 
-    private void OnMouseUp()
+    public void OnMouseUp()
     {
-        if (frozen != true)
+        if (frozen == false)
         {
 		    finalTouchPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 		    CalcAngle();
