@@ -3,7 +3,7 @@ Game for Game Design and Development 2 developed in Unity 2018.2.1f1.
 
 [Download Final Build from here](https://drive.google.com/file/d/1J-zD9KQ_ARiBFI_5zygGwIIFcnPstoxX/view?usp=sharing).
 
-![Screenshot](https://raw.githubusercontent.com/zsd7200/GDD2UnityGame/master/screenshot.png "Screenshot taken from 1.0 release.")
+![Screenshot](https://raw.githubusercontent.com/zsd7200/GDD2UnityGame/master/screenshot.png?token=ABSa1MdJj7_R3G2eS3iB1lCwnenPLPkzks5cKAH5wA%3D%3D "Screenshot taken from 1.0 release.")
 
 #### Description
 A requirement of this project was to create this game within the [world of Ethshar](http://www.ethshar.com/), created by Lawrence Watt-Evans. 
