@@ -1,5 +1,6 @@
 # Kilisha's Journey
 Game for Game Design and Development 2 developed in Unity 2018.2.1f1.
+
 [Download Final Build from here](https://drive.google.com/file/d/1J-zD9KQ_ARiBFI_5zygGwIIFcnPstoxX/view?usp=sharing).
 
 ![Screenshot](https://raw.githubusercontent.com/zsd7200/GDD2UnityGame/master/screenshot.png "Screenshot taken from 1.0 release.")
@@ -24,3 +25,15 @@ Once a round has started, a timer will begin. If a player has not reached the re
 
 #### Credits
 Created by [Zack Dunham](https://github.com/zsd7200), [Patrick Hosman](https://github.com/pjh9488), [Robert Piwko](https://github.com/Peekz1025), [Nathan Terrell](https://github.com/nat7611), and [Nick Visconti](https://github.com/nickvisc956).
+
+Menu Art - [“Hut Evil Wizard” by vennom07](https://www.deviantart.com/vennom07/art/Hut-evil-wizard-292235136)
+
+Match Sound - [“Pop Sound” by deraj](https://freesound.org/people/deraj/sounds/202230/)
+
+Move Sound - [“Pop,Low,A(H1)” by InspectorJ](https://freesound.org/people/InspectorJ/sounds/411639/)
+
+Menu Music - [“A Knight Arrives” by Robert Shaw](http://www.indiegamemusic.com/viewtrack.php?id=746)
+
+Game Music - [“Lost Jungle” by Eric Matyas](https://soundimage.org/fantasywonder/)
+
+Game Background - [“Wizard Hut (WIP)” by SixFootEwok](https://www.deviantart.com/sixfootewok/art/Wizard-Hut-WIP-665028973)
